@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Nithya Ranjana";
+    src: url("/fonts/NithyaRanjanaDU-Regular.woff2") format("woff2"),
+        url("/fonts/NithyaRanjanaDU-Regular.woff") format("woff"),
+        url("NithyaRanjanaDU-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Apply the font to the document */
+body,
+h1,
+h2,
+h3,
+p {
+    font-family: "Nithya Ranjana", serif;
+}
