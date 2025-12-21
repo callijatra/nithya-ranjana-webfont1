@@ -29,6 +29,41 @@ The font files can be downloaded from the [releases page.](https://github.com/Ek
 The Glyphsapp and UFO sources are provided. 
 > You can build the fonts using `fontmake` and `gftools` 
 
+### Usage
+
+**Step 1:** Declare Nithya Ranjana as font face in CSS desired file.
+
+```css
+@font-face {
+  font-family: 'NithyaRanjana';
+  src:  url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.otf') format('otf'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff2') format('woff2'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff') format('woff'); /* Fallback format */
+  font-weight: 100;
+  font-display: swap; 
+}
+
+@layer utilities {
+  .font-nithya-ranjana {
+    font-family: 'NithyaRanjana', sans-serif;
+  }
+
+    /* Stylistic Set 1 */
+    .font-nithya-ranjana-ss01 {
+      font-family: 'NithyaRanjana', sans-serif;
+      font-feature-settings: "ss01" 1;
+    }
+}
+```
+
+**Step 2:** Add a class name "font-nithya-ranjana" wherever required. Note that this is Devanagari based Ranjana unicode font. So, the source text needs to be in Devanagari unicode form.
+
+```html
+<h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
+<h1 class="font-nithya-ranjana-ss01 text-medium">ॐ वागिश्वरि मूं</h1>
+```
+Nithya Ranjana consists of different stylistic sets and alternate forms. Further style sets can be accessed by setting `font-feature-settings` to `ss01`, `ss02` and so on.
+
 
 ### Getting Involved
 
