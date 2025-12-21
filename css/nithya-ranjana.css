@@ -8,3 +8,25 @@
   font-weight: 100;
   font-display: swap; 
 }
+
+@layer utilities {
+  .font-nithya-ranjana {
+    font-family: 'NithyaRanjana', sans-serif;
+  }
+
+    /* Stylistic Set 1 */
+    .font-nithya-ranjana-ss01 {
+      font-family: 'NithyaRanjana', sans-serif;
+      font-feature-settings: "ss01" 1;
+    }
+}
+
+.text-large {
+  font-size: 8rem;
+  font-weight: 100;
+}
+
+.text-medium {
+  font-size: 4rem;
+  font-weight: 100;
+}
