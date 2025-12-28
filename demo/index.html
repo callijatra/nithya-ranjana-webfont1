@@ -12,7 +12,9 @@
   crossorigin="anonymous"></script>
 </head>
   <body>
-<div class="font-size">
+
+  <div class="container-large" style="max-width:1012px; margin:0 auto;">
+    <div class="font-size">
   <output for="fader" id="fontsize">50</output>
 </div>
 <input class="none" type="range" min="0" max="100" value="0" id="fader" step="1"/>
@@ -27,7 +29,6 @@ $("#fader").on("input", function () {
   $("#v-28").css("font-size", $(this).val() + "px")
 })
 </script>
-  <div class="container-large" style="max-width:1012px; margin:0 auto;">
     <h1>Can you see Nithya Ranjana in this webpage?</h1>
     <h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
     <h1 class="font-nithya-ranjana-ss01 text-medium">ॐ वागिश्वरि मूं</h1>
