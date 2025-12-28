@@ -11,6 +11,7 @@
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
 </head>
+  <body>
 <div class="font-size">
   <output for="fader" id="fontsize">50</output>
 </div>
@@ -21,7 +22,11 @@
   transform="translate(35,20.5) "
   ><h1 class="font-nithya-ranjana">नित्या रञ्जना</h1></text
 >
-<body>
+  <script>
+$("#fader").on("input", function () {
+  $("#v-28").css("font-size", $(this).val() + "px")
+})
+</script>
   <div class="container-large" style="max-width:1012px; margin:0 auto;">
     <h1>Can you see Nithya Ranjana in this webpage?</h1>
     <h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
