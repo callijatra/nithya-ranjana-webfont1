@@ -28,7 +28,9 @@
 >
   <script>
 $("#fader").on("input", function () {
-  $("#v-28").css("font-size", $(this).val() + "px")
+  var fontSize = $(this).val() + "px";
+  $("#v-28").css("font-size", fontSize);
+  $("#fontsize").text($(this).val()); // Update the output display
 })
 </script>
    
