@@ -36,16 +36,32 @@ The Glyphsapp and UFO sources are provided.
 ```css
 @font-face {
   font-family: 'NithyaRanjana';
-  src:  url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.otf') format('otf'),
-        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff2') format('woff2'),
-        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff') format('woff'); /* Fallback format */
-  font-weight: 100;
+  src:  url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff2') format('woff2'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.woff') format('woff'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaDU-Regular.otf') format('opentype'); /* Fallback format */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+
+/* Newa (NU) version, for text encoded in Newa Unicode */
+@font-face {
+  font-family: 'NithyaRanjanaNU';
+  src:  url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaNU-Regular.woff2') format('woff2'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaNU-Regular.woff') format('woff'),
+        url('https://cdn.staticdelivr.com/gh/callijatra/nithya-ranjana-webfont1/main/fonts/NithyaRanjanaNU-Regular.otf') format('opentype'); /* Fallback format */
+  font-weight: normal;
+  font-style: normal;
   font-display: swap; 
 }
 
 @layer utilities {
   .font-nithya-ranjana {
     font-family: 'NithyaRanjana', sans-serif;
+  }
+
+  .font-nithya-ranjana-nu {
+    font-family: 'NithyaRanjanaNU', sans-serif;
   }
 
     /* Stylistic Set 1 */
@@ -56,7 +72,7 @@ The Glyphsapp and UFO sources are provided.
 }
 ```
 
-**Step 2:** Add a class name "font-nithya-ranjana" wherever required. Note that this is Devanagari based Ranjana unicode font. So, the source text needs to be in Devanagari unicode form.
+**Step 2:** Add a class name "font-nithya-ranjana" wherever required. Note that this is Devanagari based Ranjana unicode font. So, the source text needs to be in Devanagari unicode form. For text encoded in Newa Unicode, use the `font-nithya-ranjana-nu` class instead.
 
 ```html
 <h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
@@ -71,5 +87,5 @@ Would you like to contribute to the development of this font family? Here is how
 
 1. Tell us about any bugs you find, or enhancements you would like to see. Send us bug reports, feature enhancements or glyph requests, using the [GitHub Issue Tracker](https://github.com/EkType/Nithya-Ranjana/issues/).
 
-2. Contribute directly to the fonts. This repository contains source files in Glyphsapp and UFO formats. You can make changes as required and build the fonts using `fontmake` and `gftools`. If you wish to contribute directly, please see below how we build the fonts and follow our build process so that we can easily include your contribution, and follow the GitHub pull request process to send your contribution. Write to `info@ektype.in` if you require any assistance in contributing to the family.
+2. Contribute directly to the fonts. This repository hosts the webfont builds; the design sources (Glyphsapp and UFO formats) live in the [EkType/Nithya-Ranjana](https://github.com/EkType/Nithya-Ranjana) repository. You can make changes as required and build the fonts using `fontmake` and `gftools`, following the GitHub pull request process to send your contribution. Write to `info@ektype.in` if you require any assistance in contributing to the family.
 

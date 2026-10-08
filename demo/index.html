@@ -6,38 +6,765 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rendering Nithya Ranjana in Webpages - Demo</title>
   <link rel="stylesheet" href="../css/nithya-ranjana.css">
-  <script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
-</head>
-  <body>
-
-  <div class="container-large" style="max-width:1012px; margin:0 auto;">
-    <div class="font-size">
-       <h1>Can you see Nithya Ranjana in this webpage?</h1>
-        <p>Drag to change Font size:</p>
-  <output for="fader" id="fontsize">50</output>
-</div>
-<input class="none" type="range" min="0" max="100" value="0" id="fader" step="1"/>
-<text id="v-28" class="changeMe" y="0.8em" fill="white"
-  stroke="black"
-  stroke-width="0"
-  transform="translate(35,20.5) "
-  ><h1 class="font-nithya-ranjana" style="color:red;font-weight:normal;">नित्या रञ्जना</h1></text
->
   <script>
-$("#fader").on("input", function () {
-  var fontSize = $(this).val() + "px";
-  $("#v-28").css("font-size", fontSize);
-  $("#fontsize").text($(this).val()); // Update the output display
-})
-</script>
-   
-    <h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
-    <h1 class="font-nithya-ranjana-ss01 text-medium">ॐ वागिश्वरि मूं</h1>
-    <p class="font-nithya-ranjana text-medium">नेपालभाषा रञ्जना लिपि</p>
-  </div>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --brand: #c0392b;
+      --brand-hover: #a93226;
+      --ink: #111827;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --surface: #f9fafb;
+      --line: #f3f4f6;
+      --nav: rgba(255, 255, 255, 0.9);
+      --hero: radial-gradient(ellipse at top, #fdf1f0 0%, #f9f5f4 45%, #f3ede9 100%);
+    }
+
+    html.dark {
+      --ink: #f3f4f6;
+      --muted: #9ca3af;
+      --bg: #030712;
+      --surface: #111827;
+      --line: #1f2937;
+      --nav: rgba(3, 7, 18, 0.9);
+      --hero: none;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--nav);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .nav-logo {
+      width: 2rem;
+      height: 2rem;
+      border-radius: .55rem;
+      background: var(--brand);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: .35rem; }
+
+    .nav-link {
+      padding: .5rem .8rem;
+      border-radius: .5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .15s, background .15s;
+    }
+
+    .nav-link:hover { color: var(--ink); background: var(--surface); }
+
+    .nav-main {
+      padding: .5rem .9rem;
+      border-radius: .5rem;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      transition: background .15s;
+    }
+
+    .nav-main:hover { background: var(--brand-hover); }
+
+    .icon-btn {
+      margin-left: .25rem;
+      padding: .5rem;
+      border: none;
+      border-radius: .5rem;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .15s, background .15s;
+    }
+
+    .icon-btn:hover { color: var(--ink); background: var(--surface); }
+
+    .hero {
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 1rem;
+      background: var(--hero);
+      background-color: var(--surface);
+      overflow: hidden;
+    }
+
+    html.dark .hero { background: #111827; }
+
+    .wrap {
+      max-width: 72rem;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: 'NithyaRanjana', sans-serif;
+      font-weight: normal;
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .hero p.lead {
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      max-width: 36rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .7rem 1.4rem;
+      border-radius: .75rem;
+      font-size: .92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s, transform .15s;
+    }
+
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 4px 14px rgba(192, 57, 43, 0.25); }
+
+    .btn-primary:hover { background: var(--brand-hover); }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    html.dark .btn-ghost { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); }
+
+    .btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
+
+    .studio {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .studio { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .preview-card {
+      padding: 3.5rem 2rem;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: auto;
+    }
+
+    .preview-card span {
+      font-family: 'NithyaRanjana', sans-serif;
+      font-weight: normal;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .controls-card { padding: 1.5rem; display: grid; gap: 1.25rem; }
+
+    .field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+
+    .field input[type="text"], .field select {
+      width: 100%;
+      padding: .6rem .75rem;
+      border: 1px solid var(--line);
+      border-radius: .65rem;
+      font-size: 1rem;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: inherit;
+    }
+
+    .field input[type="text"]:focus, .field select:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+
+    .row { display: flex; align-items: center; gap: .65rem; }
+
+    .row input[type="range"] {
+      flex: 1;
+      accent-color: var(--brand);
+      min-width: 0;
+    }
+
+    .row output {
+      min-width: 2.4rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    input[type="color"] {
+      width: 100%;
+      height: 2.4rem;
+      padding: .15rem;
+      border: 1px solid var(--line);
+      border-radius: .65rem;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+
+    .feature-grid button {
+      padding: .55rem .5rem;
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .feature-grid button.active {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+
+    .feature-state {
+      font-size: .72rem;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: .5rem;
+      padding: .45rem .6rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: .5rem;
+    }
+
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+
+    .actions .btn {
+      justify-content: center;
+      padding: .6rem .75rem;
+      font-size: .88rem;
+    }
+
+    .section {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .section-head { text-align: center; margin-bottom: 2.5rem; }
+
+    .section-head h2 {
+      margin: .35rem 0 0;
+      font-size: 1.9rem;
+      font-weight: 700;
+    }
+
+    .section-head p { margin: .5rem auto 0; color: var(--muted); max-width: 34rem; }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 760px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+    }
+
+    .showcase-card {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: box-shadow .2s, border-color .2s, transform .2s;
+    }
+
+    .showcase-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07); border-color: var(--brand); transform: translateY(-2px); }
+
+    .showcase-card .label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .showcase-card .sample { margin: 0; font-weight: normal; }
+
+    .conjunct-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: .75rem;
+    }
+
+    .conjunct {
+      padding: 1rem .4rem;
+      text-align: center;
+      font-family: 'NithyaRanjana', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: default;
+      transition: background .15s, color .15s, border-color .15s, transform .15s;
+    }
+
+    .conjunct:hover { background: var(--brand); border-color: var(--brand); color: #fff; transform: translateY(-2px); }
+
+    .docs-note {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .docs-note code { color: var(--brand); }
+
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      margin-top: 2rem;
+    }
+
+    html.dark footer { background: #030712; }
+
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: #fff; }
+
+    .footer-links { display: flex; align-items: center; gap: 1.25rem; font-size: .9rem; }
+
+    .footer-links a { color: #9ca3af; text-decoration: none; }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1rem 1.75rem;
+      font-size: .82rem;
+      color: #6b7280;
+    }
+
+    #scroll-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+      width: 3rem;
+      height: 3rem;
+      border: none;
+      border-radius: 9999px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(1rem);
+      pointer-events: none;
+      transition: opacity .25s, transform .25s, background .15s;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    #scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    #scroll-top:hover { background: var(--brand-hover); }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">
+        <span class="nav-logo">क</span>
+        <span>Callijatra Foundation</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#studio">Studio</a>
+        <a class="nav-link" href="#examples">Examples</a>
+        <a class="nav-link" href="#conjuncts">Conjuncts</a>
+        <a class="nav-main" href="https://github.com/EkType/Nithya-Ranjana" target="_blank" rel="noopener">Get the font</a>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M12 3v1m0 16v1m8.66-9H21M3 12H2m15.36-6.36-.71.71M6.34 17.66l-.71.71M17.66 17.66l-.71-.71M6.34 6.34l-.71-.71M12 5a7 7 0 1 0 0 14A7 7 0 0 0 12 5z"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">Interactive specimen &middot; नमूना</span>
+      <h1>नित्या रञ्जना</h1>
+      <p class="lead">Nithya Ranjana is a calligraphic typeface for the Ranjana script, carrying 750+ conjuncts, alternate matra forms, and four stylistic sets. Type your own text and tune it live.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#studio">Try the specimen studio</a>
+        <a class="btn btn-ghost" href="#examples">See combined forms</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="studio" id="studio">
+    <section class="card preview-card" aria-label="Font preview">
+      <span id="preview-text" aria-live="polite">नित्या रञ्जना</span>
+    </section>
+
+    <aside class="card controls-card" aria-label="Font controls">
+      <div class="field">
+        <label for="text-input">Your text</label>
+        <input id="text-input" type="text" value="नित्या रञ्जना" spellcheck="false">
+      </div>
+
+      <div class="field">
+        <label for="sample-select">Or pick a sample</label>
+        <select id="sample-select">
+          <option value="">Choose a sample&hellip;</option>
+          <option>नित्या रञ्जना</option>
+          <option>ॐ वागिश्वरि मूं</option>
+          <option>नेपालभाषा रञ्जना लिपि</option>
+          <option>सर्वे भवन्तु सुखिनः</option>
+          <option>सङ्गमेन तितिर्याम</option>
+          <option>क्षत्रिय ज्ञानत्र श्रद्धा</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="size-slider">Font size</label>
+        <div class="row">
+          <input id="size-slider" type="range" min="24" max="160" value="76">
+          <output id="size-output" for="size-slider">76</output>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="spacing-slider">Letter spacing</label>
+        <div class="row">
+          <input id="spacing-slider" type="range" min="-2" max="24" value="0" step="0.5">
+          <output id="spacing-output" for="spacing-slider">0</output>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="color-input">Colour</label>
+        <input id="color-input" type="color" value="#c0392b">
+      </div>
+
+      <div class="field">
+        <label>Stylistic sets</label>
+        <div class="feature-grid">
+          <button type="button" data-ss="ss01">ss01</button>
+          <button type="button" data-ss="ss02">ss02</button>
+          <button type="button" data-ss="ss03">ss03</button>
+          <button type="button" data-ss="ss04">ss04</button>
+        </div>
+        <div class="feature-state" id="feature-state">font-feature-settings: normal</div>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="random-btn" class="btn btn-primary">Shuffle sample</button>
+        <button type="button" id="reset-btn" class="btn btn-ghost">Reset</button>
+      </div>
+    </aside>
+  </main>
+
+  <section class="section" id="examples">
+    <div class="section-head">
+      <span class="eyebrow">From the stylesheet</span>
+      <h2>Examples</h2>
+      <p>Ready-made utility classes from <code>css/nithya-ranjana.css</code>.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="card showcase-card">
+        <span class="label">Default &middot; font-nithya-ranjana</span>
+        <h1 class="sample font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
+      </div>
+      <div class="card showcase-card">
+        <span class="label">Stylistic set 1 &middot; font-nithya-ranjana-ss01</span>
+        <h1 class="sample font-nithya-ranjana-ss01 text-medium">ॐ वागिश्वरि मूं</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="conjuncts">
+    <div class="section-head">
+      <span class="eyebrow">750+ unique conjuncts</span>
+      <h2>Conjuncts (सङ्गम &mdash; combined forms)</h2>
+      <p>Two or more consonants fused into a single written form. Hover to highlight.</p>
+    </div>
+    <div class="conjunct-grid">
+      <div class="card conjunct">क्ष</div>
+      <div class="card conjunct">त्र</div>
+      <div class="card conjunct">ज्ञ</div>
+      <div class="card conjunct">श्र</div>
+      <div class="card conjunct">द्ध</div>
+      <div class="card conjunct">द्य</div>
+      <div class="card conjunct">क्त</div>
+      <div class="card conjunct">स्त्र</div>
+      <div class="card conjunct">ञ्ज</div>
+      <div class="card conjunct">ङ्क</div>
+      <div class="card conjunct">ण्ड</div>
+      <div class="card conjunct">ह्न</div>
+    </div>
+    <div class="docs-note">
+      Tip: this page is Devanagari-based (DU). For Newa-encoded text use the
+      <code>font-nithya-ranjana-nu</code> class &mdash; see the <a href="../README.md">README</a> for the full CSS snippet.
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo">क</span>
+        <span>Callijatra Foundation</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/callijatra" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/callijatra" target="_blank" rel="noopener">Instagram</a>
+        <a href="../OFL.txt">OFL License</a>
+      </div>
+    </div>
+    <p class="footer-copy">Nithya Ranjana is licensed under the SIL Open Font License v1.1. Designed, engineered and maintained by Ek Type with support from Callijatra.</p>
+  </footer>
+
+  <button id="scroll-top" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <script>
+    var preview = document.getElementById('preview-text');
+    var textInput = document.getElementById('text-input');
+    var sampleSelect = document.getElementById('sample-select');
+    var sizeSlider = document.getElementById('size-slider');
+    var sizeOutput = document.getElementById('size-output');
+    var spacingSlider = document.getElementById('spacing-slider');
+    var spacingOutput = document.getElementById('spacing-output');
+    var colorInput = document.getElementById('color-input');
+    var featureState = document.getElementById('feature-state');
+    var featureButtons = Array.prototype.slice.call(
+      document.querySelectorAll('.feature-grid button')
+    );
+
+    var samples = [
+      'नित्या रञ्जना', 'ॐ वागिश्वरि मूं', 'नेपालभाषा रञ्जना लिपि',
+      'सर्वे भवन्तु सुखिनः', 'सङ्गमेन तितिर्याम', 'क्षत्रिय ज्ञानत्र श्रद्धा'
+    ];
+
+    var savedSample = 'नित्या रञ्जना';
+
+    function activeSets() {
+      return featureButtons
+        .filter(function (b) { return b.classList.contains('active'); })
+        .map(function (b) { return b.dataset.ss; });
+    }
+
+    function apply() {
+      preview.style.fontSize = sizeSlider.value + 'px';
+      sizeOutput.value = sizeSlider.value;
+      preview.style.letterSpacing = spacingSlider.value + 'px';
+      spacingOutput.value = spacingSlider.value;
+      preview.style.color = colorInput.value;
+
+      var sets = activeSets();
+      preview.style.fontFeatureSettings = sets.length
+        ? sets.map(function (s) { return '"' + s + '" 1'; }).join(', ')
+        : 'normal';
+      featureState.textContent = sets.length
+        ? 'font-feature-settings: ' + preview.style.fontFeatureSettings
+        : 'font-feature-settings: normal';
+    }
+
+    function setText(value) {
+      preview.textContent = value;
+      textInput.value = value;
+      sampleSelect.value = '';
+    }
+
+    textInput.addEventListener('input', function () {
+      preview.textContent = textInput.value;
+      sampleSelect.value = '';
+    });
+
+    sampleSelect.addEventListener('change', function () {
+      if (sampleSelect.value) {
+        setText(sampleSelect.value);
+        savedSample = sampleSelect.value;
+      }
+    });
+
+    featureButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        button.classList.toggle('active');
+        apply();
+      });
+    });
+
+    document.getElementById('random-btn').addEventListener('click', function () {
+      var pool = samples.filter(function (s) { return s !== savedSample; });
+      var next = pool[Math.floor(Math.random() * pool.length)];
+      savedSample = next;
+      setText(next);
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', function () {
+      sizeSlider.value = 76;
+      spacingSlider.value = 0;
+      colorInput.value = '#c0392b';
+      featureButtons.forEach(function (b) { b.classList.remove('active'); });
+      setText(savedSample || 'नित्या रञ्जना');
+      apply();
+    });
+
+    [sizeSlider, spacingSlider, colorInput].forEach(function (control) {
+      control.addEventListener('input', apply);
+    });
+
+    apply();
+
+    var html = document.documentElement;
+    var themeToggle = document.getElementById('theme-toggle');
+    var iconSun = document.getElementById('icon-sun');
+    var iconMoon = document.getElementById('icon-moon');
+
+    function setTheme(dark) {
+      html.classList.toggle('dark', dark);
+      iconSun.style.display = dark ? 'block' : 'none';
+      iconMoon.style.display = dark ? 'none' : 'block';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    setTheme(html.classList.contains('dark'));
+
+    themeToggle.addEventListener('click', function () {
+      setTheme(!html.classList.contains('dark'));
+    });
+
+    var scrollTop = document.getElementById('scroll-top');
+
+    window.addEventListener('scroll', function () {
+      scrollTop.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+
+    scrollTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 
 </html>
