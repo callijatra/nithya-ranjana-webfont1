@@ -85,7 +85,7 @@ The Glyphsapp and UFO sources are provided.
 <h1 class="font-nithya-ranjana text-large">ॐ वागिश्वरि मूं</h1>
 <h1 class="font-nithya-ranjana-ss01 text-medium">ॐ वागिश्वरि मूं</h1>
 ```
-Nithya Ranjana consists of different stylistic sets and alternate forms. Further style sets can be accessed by setting `font-feature-settings` to `ss01`, `ss02` and so on.
+Nithya Ranjana consists of different stylistic sets and alternate forms. Further style sets can be accessed by setting `font-feature-settings` to `ss01`, `ss02` and so on. The sets can be toggled live in the [interactive demo](https://callijatra.github.io/nithya-ranjana-webfont1/demo).
 
 
 ### Getting Involved
