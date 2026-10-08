@@ -1,5 +1,12 @@
-Nithya Ranjana ([Demo](https://callijatra.github.io/nithya-ranjana-webfont1/demo))
+Nithya Ranjana
 ==============
+[![Homepage](https://img.shields.io/badge/homepage-nithya%20ranjana%20webfont-c0392b)](https://callijatra.github.io/nithya-ranjana-webfont1/)
+[![Demo](https://img.shields.io/badge/demo-interactive%20specimen-c0392b)](https://callijatra.github.io/nithya-ranjana-webfont1/demo)
+[![License: OFL 1.1](https://img.shields.io/badge/license-OFL%201.1-blue)](OFL.txt)
+[![Formats](https://img.shields.io/badge/webfont-WOFF2%20%7C%20WOFF%20%7C%20OTF-lightgrey)](fonts/)
+
+> **[Open the homepage](https://callijatra.github.io/nithya-ranjana-webfont1/)** &middot; **[Try the interactive demo](https://callijatra.github.io/nithya-ranjana-webfont1/demo)**
+
 ![Nithya Ranjana Sample Image](https://github.com/EkType/Nithya-Ranjana/raw/385f8d73ea7061dde0598744db0d31b6e6a1a555/Promotion/NithyaRanjana.gif)
 
 
