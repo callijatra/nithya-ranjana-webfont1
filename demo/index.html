@@ -19,6 +19,8 @@
     :root {
       --brand: #c0392b;
       --brand-hover: #a93226;
+      --brand-subtle: #fbeae9;
+      --brand-subtle-border: #f5c6cb;
       --ink: #111827;
       --muted: #6b7280;
       --bg: #ffffff;
@@ -29,6 +31,8 @@
     }
 
     html.dark {
+      --brand-subtle: #3b1212;
+      --brand-subtle-border: #7f1d1d;
       --ink: #f3f4f6;
       --muted: #9ca3af;
       --bg: #030712;
@@ -75,26 +79,53 @@
       gap: 1rem;
     }
 
-    .nav-brand {
+    .brand-logo {
       display: flex;
       align-items: center;
-      gap: .6rem;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .95rem;
+      gap: 0.6rem;
+      color: var(--ink);
+      flex-shrink: 0;
     }
 
-    .nav-logo {
-      width: 2rem;
-      height: 2rem;
-      border-radius: .55rem;
-      background: var(--brand);
-      color: #fff;
+    .brand-logo-img-link {
       display: flex;
       align-items: center;
-      justify-content: center;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .brand-logo-img-link:hover {
+      opacity: 0.85;
+    }
+
+    .brand-title-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo img {
+      height: 2.25rem;
+      width: auto;
+      transition: filter 0.2s;
+    }
+
+    html.dark .brand-logo img {
+      filter: brightness(0) invert(1);
+    }
+
+    .brand-title-badge {
+      font-size: 0.72rem;
       font-weight: 700;
-      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background-color: var(--brand-subtle);
+      color: var(--brand);
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      border: 1px solid var(--brand-subtle-border);
+      line-height: 1.2;
     }
 
     .nav-links { display: flex; align-items: center; gap: .35rem; }
@@ -700,10 +731,14 @@
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a class="nav-brand" href="#top">
-        <span class="nav-logo">क</span>
-        <span>Nithya Ranjana</span>
-      </a>
+      <div class="brand-logo">
+        <a href="https://callijatra.github.io" target="_blank" rel="noopener noreferrer" title="Callijatra Foundation Webpage" class="brand-logo-img-link">
+          <img src="../images/logos/callijatra_logo.svg" alt="Callijatra Foundation Logo">
+        </a>
+        <a href="../index.html" class="brand-title-link" title="Webfonts Home">
+          <span class="brand-title-badge">Webfonts</span>
+        </a>
+      </div>
       <div class="nav-links">
         <a class="nav-link" href="#studio">Studio</a>
         <a class="nav-link" href="#examples">Examples</a>
@@ -858,7 +893,6 @@
       <div class="footer-brand-block">
         <a href="https://callijatra.github.io" target="_blank" rel="noopener" class="footer-brand">
           <img src="../images/logos/callijatra_logo.svg" alt="Callijatra Foundation Logo" class="footer-logo">
-          <span>Nithya Ranjana</span>
         </a>
         <p class="footer-desc">Promoting indigenous scripts through technology, education, and design.</p>
       </div>
