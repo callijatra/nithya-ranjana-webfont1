@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Responsive Stacking**: Improved mobile breakpoint to stack `.steps` into a single column on screens &le; 900px.
 
 ### Changed
+- **Specimen Slider Range**: Increased maximum font size slider from 160px to 320px in both the live specimen section (`index.html`) and the interactive studio (`demo/index.html`).
 - **Header Branding**: Updated navigation header with Callijatra Foundation logo and a "Webfonts" badge linking between pages on both the landing page (`index.html`) and demo studio (`demo/index.html`).
 - **Footer Brand Layout**: Refined Callijatra logo and brand presentation in the footer.
 
