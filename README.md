@@ -96,3 +96,6 @@ Would you like to contribute to the development of this font family? Here is how
 
 2. Contribute directly to the fonts. This repository hosts the webfont builds; the design sources (Glyphsapp and UFO formats) live in the [EkType/Nithya-Ranjana](https://github.com/EkType/Nithya-Ranjana) repository. You can make changes as required and build the fonts using `fontmake` and `gftools`, following the GitHub pull request process to send your contribution. Write to `info@ektype.in` if you require any assistance in contributing to the family.
 
+### Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history and recent changes.
